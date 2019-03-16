@@ -7,17 +7,19 @@ const quick_sort = arr => {
   if (arr.length < 2) return arr;
   let pointer = Math.floor(arr.length / 2);
   let top = arr[pointer];
-  let lefts = [], rights = [];
-  arr.splice(pointer, 1);
+  let lefts = [], rights = [], mids = [];
+  // arr.splice(pointer, 1);
   arr.forEach(ele => {
     if (top > ele) {
       lefts.push(ele)
-    } else {
+    } else if (top < ele) {
       rights.push(ele);
+    } else {
+      mids.push(ele);
     }
   })
 
-  return quick_sort(lefts).concat(top, quick_sort(rights));
+  return quick_sort(lefts).concat(mids, quick_sort(rights));
 }
 
 let arr = [9, 3, 1, 2, 9, 4, 2, 0, -1, -3, 2]
